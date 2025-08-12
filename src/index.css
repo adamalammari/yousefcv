@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Portfolio Design System - Ultra High Quality */
+
+@layer base {
+  :root {
+    /* Base Colors - Sophisticated Neutrals */
+    --background: 0 0% 6%;
+    --background-subtle: 0 0% 8%;
+    --background-card: 0 0% 10%;
+    --foreground: 0 0% 95%;
+    --foreground-muted: 0 0% 70%;
+
+    /* Card System */
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+    --card-border: 0 0% 15%;
+
+    /* Accent Color System - Modern Orange/Red */
+    --primary: 14 86% 58%;
+    --primary-glow: 14 100% 68%;
+    --primary-foreground: 0 0% 100%;
+    --primary-subtle: 14 30% 25%;
+
+    /* Secondary System */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
+    --secondary-hover: 0 0% 20%;
+
+    /* Muted System */
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+    --muted-hover: 0 0% 16%;
+
+    /* Accent System */
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 90%;
+    --accent-hover: 0 0% 20%;
+
+    /* Border System */
+    --border: 0 0% 15%;
+    --border-subtle: 0 0% 12%;
+    --input: 0 0% 15%;
+    --ring: 14 86% 58%;
+
+    /* Status Colors */
+    --success: 142 76% 36%;
+    --warning: 48 96% 53%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-subtle: linear-gradient(135deg, hsl(var(--background)), hsl(var(--background-subtle)));
+    --gradient-accent: linear-gradient(90deg, hsl(var(--primary) / 0.2), transparent);
+
+    /* Shadows */
+    --shadow-elegant: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.3);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.3);
+
+    /* Border Radius */
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    /* Typography */
+    --font-heading: 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  /* Light mode overrides (optional) */
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  /* Floating Navigation */
+  .nav-floating {
+    @apply fixed top-6 left-1/2 -translate-x-1/2 z-50;
+    @apply bg-card/80 backdrop-blur-xl border border-border;
+    @apply rounded-full px-6 py-3 shadow-elegant;
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Glow Effect */
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Smooth Reveal Animation */
+  .reveal {
+    @apply opacity-0 translate-y-8;
+    animation: reveal 0.8s ease-out forwards;
+  }
+
+  .reveal-delay {
+    animation-delay: 0.2s;
+  }
+
+  /* Profile Image Float */
+  .profile-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Skill Card Hover */
+  .skill-card {
+    @apply relative overflow-hidden;
+    transition: var(--transition-smooth);
+  }
+
+  .skill-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-primary opacity-0;
+    transition: var(--transition-smooth);
+  }
+
+  .skill-card:hover::before {
+    @apply opacity-10;
+  }
+
+  .skill-card:hover {
+    @apply scale-105 shadow-glow;
+  }
+
+  /* Typewriter Effect */
+  .typewriter {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--primary));
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+}
+
+@layer utilities {
+  /* Custom Keyframes */
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: hsl(var(--primary)); }
+  }
+
+  @keyframes particles {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-1000px) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  /* Scroll Animations */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+  }
+}
